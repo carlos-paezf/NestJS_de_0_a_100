@@ -23,3 +23,4 @@
 - [Introducción a NestJS](DOC/P1T1_Introduccion_NestJS.md)
 - [Configuración y variables de entorno](DOC/P2T1_Configuracion_variables_de_entorno.md)
 - [Docker Compose y ¨PostgreSQL](DOC/P3T1_Docker_Compose_PostgreSQL.md)
+- [Iniciando con TypeORM](DOC/P4T1_Iniciando_con_TypeORM.md)
