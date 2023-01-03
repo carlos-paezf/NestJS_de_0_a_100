@@ -70,6 +70,6 @@ Cómo preferencia, vamos a dejar que la aplicación centralice la lógica dentro
 
 ___
 
-| Anterior | Readme                 | Siguiente                                                                         |
-| -------- | ---------------------- | --------------------------------------------------------------------------------- |
-|          | [Readme](../README.md) | [Configuración y variables de entorno](./P2T1_Configuracion_variables_de_entorno) |
+| Anterior | Readme                 | Siguiente                                                                            |
+| -------- | ---------------------- | ------------------------------------------------------------------------------------ |
+|          | [Readme](../README.md) | [Configuración y variables de entorno](./P2T1_Configuracion_variables_de_entorno.md) |
