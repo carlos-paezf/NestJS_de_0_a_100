@@ -21,3 +21,4 @@
 [Documentación de Endpoints en Postman](https://documenter.getpostman.com/view/8438809/2s8Z711Y3a)
 
 - [Introducción a NestJS](DOC/P1T1_Introduccion_NestJS.md)
+- [Configuración y variables de entorno](DOC/P2T1_Configuracion_variables_de_entorno.md)
