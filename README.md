@@ -12,10 +12,12 @@
 ![pnpm](https://img.shields.io/badge/pnpm-orange?style=for-the-badge&logo=pnpm&logoColor=white)
 
 - ***Node v18.12.1***
-- **NestJS**
+- ***NestJS v9.1.8***
 - ***Docker v20.10.21***
 - ***pnpm***
 
 ## Documentación paso a paso
+
+[Documentación de Endpoints en Postman](https://documenter.getpostman.com/view/8438809/2s8Z711Y3a)
 
 - [Introducción a NestJS](DOC/P1T1_Introduccion_NestJS.md)
