@@ -1,4 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common'
+
 
 @Injectable()
-export class UsersService {}
+export class UsersService {
+    getHello (): string {
+        return 'Endpoint say: Hello User!'
+    }
+}
