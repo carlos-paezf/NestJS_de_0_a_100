@@ -25,3 +25,4 @@
 - [Docker Compose y ¨PostgreSQL](DOC/P3T1_Docker_Compose_PostgreSQL.md)
 - [Iniciando con TypeORM](DOC/P4T1_Iniciando_con_TypeORM.md)
 - [Relación custom Many to Many y Migraciones](DOC/P5T1_Relacion_Custom_Many_to_Many_Migraciones.md)
+- [DTOs, Patron repositorio y Servicios](DOC/P6T1_DTOS_Patron_Repositorio_Servicios.md)
