@@ -147,6 +147,6 @@ Cuando observamos la estructura de nuestra base de datos podemos observar que se
 
 ___
 
-| Anterior                                                 | Readme                 | Siguiente                                                                         |
-| -------------------------------------------------------- | ---------------------- | --------------------------------------------------------------------------------- |
-| [Iniciando con TypeORM](./P4T1_Iniciando_con_TypeORM.md) | [Readme](../README.md) | [DTOs, Patron repositorio y Servicios](P6T1_DTOS_Patron_Repositorio_Servicios.md) |
+| Anterior                                                 | Readme                 | Siguiente                                                                           |
+| -------------------------------------------------------- | ---------------------- | ----------------------------------------------------------------------------------- |
+| [Iniciando con TypeORM](./P4T1_Iniciando_con_TypeORM.md) | [Readme](../README.md) | [DTOs, Patron repositorio y Servicios](./P6T1_DTOS_Patron_Repositorio_Servicios.md) |
