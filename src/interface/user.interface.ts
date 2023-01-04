@@ -1,3 +1,7 @@
+/**
+ * Defining the interface for the user object. 
+ * @interface
+ */
 export interface IUser {
     firstName: string
     lastName: string

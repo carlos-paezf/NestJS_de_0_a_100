@@ -4,7 +4,7 @@ import { SnakeNamingStrategy } from "typeorm-naming-strategies"
 
 
 ConfigModule.forRoot( {
-    envFilePath: [ `.${ process.env.NODE_ENV }.env`, '.env' ]
+    envFilePath: [ `.${ String( process.env.NODE_ENV ).trim() }.env`, '.env' ]
 } )
 
 
