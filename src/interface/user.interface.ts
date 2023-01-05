@@ -1,3 +1,5 @@
+import { ROLES } from "../constants"
+
 /**
  * Defining the interface for the user object. 
  * @interface
@@ -9,5 +11,5 @@ export interface IUser {
     email: string
     username: string
     password: string
-    role: string
+    role: ROLES
 }
