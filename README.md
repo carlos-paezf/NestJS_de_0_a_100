@@ -22,7 +22,8 @@
 
 - [Introducción a NestJS](DOC/P1T1_Introduccion_NestJS.md)
 - [Configuración y variables de entorno](DOC/P2T1_Configuracion_variables_de_entorno.md)
-- [Docker Compose y ¨PostgreSQL](DOC/P3T1_Docker_Compose_PostgreSQL.md)
+- [Docker Compose y PostgreSQL](DOC/P3T1_Docker_Compose_PostgreSQL.md)
 - [Iniciando con TypeORM](DOC/P4T1_Iniciando_con_TypeORM.md)
 - [Relación custom Many to Many y Migraciones](DOC/P5T1_Relacion_Custom_Many_to_Many_Migraciones.md)
 - [DTOs, Patron repositorio y Servicios](DOC/P6T1_DTOS_Patron_Repositorio_Servicios.md)
+- [Error Handlers y Controladores](DOC/P7T1_Error_Handlers_Controladores.md)
