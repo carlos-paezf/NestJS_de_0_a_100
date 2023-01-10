@@ -208,4 +208,4 @@ ___
 
 | Anterior                                                                                         | Readme                 | Siguiente |
 | ------------------------------------------------------------------------------------------------ | ---------------------- | --------- |
-| [Relación custom Many to Many y Migraciones](./P5T1_Relacion_Custom_Many_to_Many_Migraciones.md) | [Readme](../README.md) |           |
+| [Relación custom Many to Many y Migraciones](./P5T1_Relacion_Custom_Many_to_Many_Migraciones.md) | [Readme](../README.md) | [Error Handlers y Controladores](./P7T1_Error_Handlers_Controladores.md) |
