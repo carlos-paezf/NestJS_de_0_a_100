@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator'
-import { IProject } from '../../../dist/interface/project.interface'
+import { IProject } from '../../interface/project.interface'
 
 
 /**

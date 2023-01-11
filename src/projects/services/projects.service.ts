@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Repository, UpdateResult, DeleteResult } from 'typeorm'
+import { DeleteResult, Repository, UpdateResult } from 'typeorm'
+import { ErrorManager } from '../../utils/error.manager'
 import { ProjectDTO, ProjectUpdateDTO } from '../dtos/project.dto'
 import { ProjectEntity } from '../entities/project.entity'
 
@@ -14,9 +15,16 @@ export class ProjectsService {
      */
     public async findProjects (): Promise<ProjectEntity[]> {
         try {
-            return await this._projectRepository.find()
+            const projects: ProjectEntity[] = await this._projectRepository.find()
+            if ( !projects.length ) {
+                throw new ErrorManager( {
+                    type: 'BAD_REQUEST',
+                    message: 'No se encontraron resultados'
+                } )
+            }
+            return projects
         } catch ( error ) {
-            throw new Error( error )
+            throw ErrorManager.createSignatureError( error.message )
         }
     }
 
@@ -27,12 +35,19 @@ export class ProjectsService {
      */
     public async findProjectById ( id: string ): Promise<ProjectEntity> {
         try {
-            return await this._projectRepository
+            const project: ProjectEntity = await this._projectRepository
                 .createQueryBuilder( 'project' )
                 .where( { id } )
                 .getOne()
+            if ( !project ) {
+                throw new ErrorManager( {
+                    type: 'BAD_REQUEST',
+                    message: 'No se encontraron resultados'
+                } )
+            }
+            return project
         } catch ( error ) {
-            throw new Error( error )
+            throw ErrorManager.createSignatureError( error.message )
         }
     }
 
@@ -43,9 +58,16 @@ export class ProjectsService {
      */
     public async createProject ( body: ProjectDTO ): Promise<ProjectEntity> {
         try {
-            return await this._projectRepository.save( body )
+            const project: ProjectEntity = await this._projectRepository.save( body )
+            if ( !project ) {
+                throw new ErrorManager( {
+                    type: 'BAD_REQUEST',
+                    message: 'No se aplicaron los cambios'
+                } )
+            }
+            return project
         } catch ( error ) {
-            throw new Error( error )
+            throw ErrorManager.createSignatureError( error.message )
         }
     }
 
@@ -58,11 +80,15 @@ export class ProjectsService {
     public async updateProject ( id: string, body: ProjectUpdateDTO ): Promise<UpdateResult | null> {
         try {
             const result: UpdateResult = await this._projectRepository.update( id, body )
-            return ( !result.affected )
-                ? null
-                : result
+            if ( !result.affected ) {
+                throw new ErrorManager( {
+                    type: 'BAD_REQUEST',
+                    message: 'No se aplicaron los cambios'
+                } )
+            }
+            return result
         } catch ( error ) {
-            throw new Error( error )
+            throw ErrorManager.createSignatureError( error.message )
         }
     }
 
@@ -74,11 +100,15 @@ export class ProjectsService {
     public async deleteProject ( id: string ): Promise<DeleteResult | null> {
         try {
             const result: DeleteResult = await this._projectRepository.delete( id )
-            return ( !result.affected )
-                ? null
-                : result
+            if ( !result.affected ) {
+                throw new ErrorManager( {
+                    type: 'BAD_REQUEST',
+                    message: 'No se aplicaron los cambios'
+                } )
+            }
+            return result
         } catch ( error ) {
-            throw new Error( error )
+            throw ErrorManager.createSignatureError( error.message )
         }
     }
 }

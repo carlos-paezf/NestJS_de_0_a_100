@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { DeleteResult, Repository, UpdateResult } from 'typeorm'
+import { ErrorManager } from '../../utils/error.manager'
 import { UserDTO, UserUpdateDTO } from '../dtos/user.dto'
 import { UserEntity } from '../entities/user.entity'
 
@@ -14,14 +15,21 @@ export class UsersService {
     constructor ( @InjectRepository( UserEntity ) private readonly _userRepository: Repository<UserEntity> ) { }
 
     /**
-     * It returns a promise of an array of UserEntity objects
-     * @returns An array of UserEntity objects
+     * It returns a promise that resolves to an object with two properties: count and users
+     * @returns { count: number, users: UserEntity[] }
      */
-    public async findUsers (): Promise<UserEntity[]> {
+    public async findUsers (): Promise<{ count: number, users: UserEntity[] }> {
         try {
-            return await this._userRepository.find()
+            const { 0: users, 1: count }: [ UserEntity[], number ] = await this._userRepository.findAndCount()
+            if ( !count ) {
+                throw new ErrorManager( {
+                    type: 'BAD_REQUEST',
+                    message: 'No se encontraron resultados'
+                } )
+            }
+            return { count, users }
         } catch ( error ) {
-            throw new Error( error )
+            throw ErrorManager.createSignatureError( error.message )
         }
     }
 
@@ -32,12 +40,20 @@ export class UsersService {
      */
     public async findUserById ( id: string ): Promise<UserEntity> {
         try {
-            return await this._userRepository
+            const user: UserEntity = await this._userRepository
                 .createQueryBuilder( 'user' )
                 .where( { id } )
                 .getOne()
+
+            if ( !user ) {
+                throw new ErrorManager( {
+                    type: 'BAD_REQUEST',
+                    message: 'No se encontraron resultados'
+                } )
+            }
+            return user
         } catch ( error ) {
-            throw new Error( error )
+            throw ErrorManager.createSignatureError( error.message )
         }
     }
 
@@ -48,9 +64,16 @@ export class UsersService {
      */
     public async createUser ( body: UserDTO ): Promise<UserEntity> {
         try {
-            return await this._userRepository.save( body )
+            const user: UserEntity = await this._userRepository.save( body )
+            if ( !user ) {
+                throw new ErrorManager( {
+                    type: 'BAD_REQUEST',
+                    message: 'No se aplicaron los cambios'
+                } )
+            }
+            return user
         } catch ( error ) {
-            throw new Error( error )
+            throw ErrorManager.createSignatureError( error.message )
         }
     }
 
@@ -60,14 +83,18 @@ export class UsersService {
      * @param {UserUpdateDTO} body - UserUpdateDTO
      * @returns The result of the update operation.
      */
-    public async updateUser ( id: string, body: UserUpdateDTO ): Promise<UpdateResult | null> {
+    public async updateUser ( id: string, body: UserUpdateDTO ): Promise<UpdateResult> {
         try {
             const result: UpdateResult = await this._userRepository.update( id, body )
-            return ( !result.affected )
-                ? null
-                : result
+            if ( !result.affected ) {
+                throw new ErrorManager( {
+                    type: 'BAD_REQUEST',
+                    message: 'No se aplicaron los cambios'
+                } )
+            }
+            return result
         } catch ( error ) {
-            throw new Error( error )
+            throw ErrorManager.createSignatureError( error.message )
         }
     }
 
@@ -76,14 +103,18 @@ export class UsersService {
      * @param {string} id - string - The id of the user to be deleted
      * @returns The result of the delete operation.
      */
-    public async deleteUser ( id: string ): Promise<DeleteResult | null> {
+    public async deleteUser ( id: string ): Promise<DeleteResult> {
         try {
             const result: DeleteResult = await this._userRepository.delete( id )
-            return ( !result.affected )
-                ? null
-                : result
+            if ( !result.affected ) {
+                throw new ErrorManager( {
+                    type: 'BAD_REQUEST',
+                    message: 'No se aplicaron los cambios'
+                } )
+            }
+            return result
         } catch ( error ) {
-            throw new Error( error )
+            throw ErrorManager.createSignatureError( error.message )
         }
     }
 }
