@@ -97,4 +97,4 @@ ___
 
 | Anterior | Readme | Siguiente |
 | -------- | ------ | --------- |
-| [Iniciando con TypeORM](./P4T1_Iniciando_con_TypeORM.md) | [Readme](../README.md) | |
+| [DTOs, Patron repositorio y Servicios](./P6T1_DTOS_Patron_Repositorio_Servicios.md) | [Readme](../README.md) | [Relaciones con Query Builder](./P8T1_Relaciones_Query_Builder.md) |
