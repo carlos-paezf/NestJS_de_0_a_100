@@ -27,3 +27,4 @@
 - [Relación custom Many to Many y Migraciones](DOC/P5T1_Relacion_Custom_Many_to_Many_Migraciones.md)
 - [DTOs, Patron repositorio y Servicios](DOC/P6T1_DTOS_Patron_Repositorio_Servicios.md)
 - [Error Handlers y Controladores](DOC/P7T1_Error_Handlers_Controladores.md)
+- [Relaciones con Query Builder](DOC/P8T1_Relaciones_Query_Builder.md)
