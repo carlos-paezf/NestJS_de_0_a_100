@@ -13,16 +13,16 @@ export class ProjectsService {
      * It returns a promise of an array of ProjectEntity objects
      * @returns An array of ProjectEntity objects
      */
-    public async findProjects (): Promise<ProjectEntity[]> {
+    public async findProjects (): Promise<{ count: number, projects: ProjectEntity[] }> {
         try {
-            const projects: ProjectEntity[] = await this._projectRepository.find()
-            if ( !projects.length ) {
+            const { 0: projects, 1: count }: [ ProjectEntity[], number ] = await this._projectRepository.findAndCount()
+            if ( !count ) {
                 throw new ErrorManager( {
                     type: 'BAD_REQUEST',
                     message: 'No se encontraron resultados'
                 } )
             }
-            return projects
+            return { count, projects }
         } catch ( error ) {
             throw ErrorManager.createSignatureError( error.message )
         }
