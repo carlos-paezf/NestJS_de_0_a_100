@@ -1,0 +1,35 @@
+POST http://localhost:8000/api/users/register/
+Content-Type: application/json
+
+{
+    "firstName": "test",
+    "lastName": "user",
+    "age": 22,
+    "email": "test.user@email.com",
+    "username": "test_user",
+    "password": "test_password",
+    "role": "ADMIN"
+}
+
+###############################################################
+
+GET http://localhost:8000/api/users/all/
+
+###############################################################
+
+GET http://localhost:8000/api/users/7050d082-b91c-4fe7-aa75-4b61250cfec6/
+
+###############################################################
+
+PUT http://localhost:8000/api/users/edit/7050d082-b91c-4fe7-aa75-4b61250cfec6/
+Content-Type: application/json
+
+{
+    "firstName": "test update"
+}
+
+###############################################################
+
+DELETE http://localhost:8000/api/users/delete/7050d082-b91c-4fe7-aa75-4b61250cfec6/
+
+###############################################################

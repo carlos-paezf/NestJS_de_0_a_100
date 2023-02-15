@@ -1,0 +1,30 @@
+POST http://localhost:8000/api/projects/register/
+Content-Type: application/json
+
+{
+    "name": "Proyecto de prueba",
+    "description": "Proyecto de prueba"
+}
+
+###############################################################
+
+GET http://localhost:8000/api/projects/all/
+
+###############################################################
+
+GET http://localhost:8000/api/projects/05bab1c5-adcd-462b-8b67-4ea9735300a0/
+
+###############################################################
+
+PUT http://localhost:8000/api/projects/edit/05bab1c5-adcd-462b-8b67-4ea9735300a0/
+Content-Type: application/json
+
+{
+    "description": "Actualización del projecto"
+}
+
+###############################################################
+
+DELETE http://localhost:8000/api/projects/delete/d029af25-6483-46b5-b754-411a11418153/
+
+###############################################################

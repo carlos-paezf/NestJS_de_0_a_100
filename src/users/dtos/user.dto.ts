@@ -1,6 +1,8 @@
-import { IsEmail, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator'
+import { IsEmail, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, IsUUID } from 'class-validator'
 import { IUser } from '../../interface/user.interface'
-import { ROLES } from '../../constants'
+import { ACCESS_LEVEL, ROLES } from '../../constants'
+import { UserEntity } from '../entities/user.entity'
+import { ProjectEntity } from '../../projects/entities/project.entity'
 
 
 /** 
@@ -76,4 +78,18 @@ export class UserUpdateDTO implements Partial<IUser> {
     @IsOptional()
     @IsEnum( ROLES )
     role?: ROLES
+}
+
+export class UserToProjectDTO {
+    @IsNotEmpty()
+    @IsUUID()
+    user: UserEntity
+
+    @IsNotEmpty()
+    @IsUUID()
+    project: ProjectEntity
+
+    @IsNotEmpty()
+    @IsEnum( ACCESS_LEVEL )
+    accessLevel: ACCESS_LEVEL
 }

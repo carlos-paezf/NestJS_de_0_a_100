@@ -1,0 +1,10 @@
+POST http://localhost:8000/api/users/user-to-project/
+Content-Type: application/json
+
+{
+    "user": "7050d082-b91c-4fe7-aa75-4b61250cfec6",
+    "project": "05bab1c5-adcd-462b-8b67-4ea9735300a0",
+    "accessLevel": 50 
+}
+
+############################################################################

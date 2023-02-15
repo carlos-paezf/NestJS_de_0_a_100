@@ -2,8 +2,9 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { DeleteResult, Repository, UpdateResult } from 'typeorm'
 import { ErrorManager } from '../../utils/error.manager'
-import { UserDTO, UserUpdateDTO } from '../dtos/user.dto'
+import { UserDTO, UserToProjectDTO, UserUpdateDTO } from '../dtos/user.dto'
 import { UserEntity } from '../entities/user.entity'
+import { UsersProjectsEntity } from '../entities/usersProjects.entity'
 
 
 /**
@@ -12,7 +13,10 @@ import { UserEntity } from '../entities/user.entity'
  */
 @Injectable()
 export class UsersService {
-    constructor ( @InjectRepository( UserEntity ) private readonly _userRepository: Repository<UserEntity> ) { }
+    constructor (
+        @InjectRepository( UserEntity ) private readonly _userRepository: Repository<UserEntity>,
+        @InjectRepository( UsersProjectsEntity ) private readonly _usersProjectsRepository: Repository<UsersProjectsEntity>
+    ) { }
 
     /**
      * It returns a promise that resolves to an object with two properties: count and users
@@ -43,6 +47,8 @@ export class UsersService {
             const user: UserEntity = await this._userRepository
                 .createQueryBuilder( 'user' )
                 .where( { id } )
+                .leftJoinAndSelect( 'user.projectsIncludes', 'projectsIncludes' )
+                .leftJoinAndSelect( 'projectsIncludes.project', 'project' )
                 .getOne()
 
             if ( !user ) {
@@ -113,6 +119,19 @@ export class UsersService {
                 } )
             }
             return result
+        } catch ( error ) {
+            throw ErrorManager.createSignatureError( error.message )
+        }
+    }
+
+    /**
+     * It takes a UserToProjectDTO object, saves it to the database, and returns the saved object
+     * @param {UserToProjectDTO} body - UserToProjectDTO
+     * @returns The user's project relation
+     */
+    public async relationToProject ( body: UserToProjectDTO ) {
+        try {
+            return await this._usersProjectsRepository.save( body )
         } catch ( error ) {
             throw ErrorManager.createSignatureError( error.message )
         }
