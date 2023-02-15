@@ -124,4 +124,4 @@ ___
 
 | Anterior               | Readme                 | Siguiente              |
 | ---------------------- | ---------------------- | ---------------------- |
-| [Error Handlers y Controladores](./P7T1_Error_Handlers_Controladores.md) | [Readme](../README.md) |  |
+| [Error Handlers y Controladores](./P7T1_Error_Handlers_Controladores.md) | [Readme](../README.md) | [Autenticación de usuarios](./P9T1_Autenticacion_Usuarios.md) |
