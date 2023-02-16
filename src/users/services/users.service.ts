@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
+import * as bcrypt from 'bcrypt'
 import { DeleteResult, Repository, UpdateResult } from 'typeorm'
 import { ErrorManager } from '../../utils/error.manager'
 import { UserDTO, UserToProjectDTO, UserUpdateDTO } from '../dtos/user.dto'
@@ -70,13 +71,20 @@ export class UsersService {
      */
     public async createUser ( body: UserDTO ): Promise<UserEntity> {
         try {
+            body.password = await bcrypt.hash(
+                body.password,
+                Number( process.env.HASH_SALT )
+            )
+
             const user: UserEntity = await this._userRepository.save( body )
+
             if ( !user ) {
                 throw new ErrorManager( {
                     type: 'BAD_REQUEST',
                     message: 'No se aplicaron los cambios'
                 } )
             }
+
             return user
         } catch ( error ) {
             throw ErrorManager.createSignatureError( error.message )
@@ -132,6 +140,24 @@ export class UsersService {
     public async relationToProject ( body: UserToProjectDTO ) {
         try {
             return await this._usersProjectsRepository.save( body )
+        } catch ( error ) {
+            throw ErrorManager.createSignatureError( error.message )
+        }
+    }
+
+    /**
+     * It finds a user by a key and value.
+     * @param  - { key: keyof UserDTO, value: any }
+     * @returns UserEntity
+     */
+    public async findBy ( { key, value }: { key: keyof UserDTO, value: any } ) {
+        try {
+            const user: UserEntity = await this._userRepository
+                .createQueryBuilder( 'user' )
+                .addSelect( 'user.password' )
+                .where( { [ key ]: value } )
+                .getOne()
+            return user
         } catch ( error ) {
             throw ErrorManager.createSignatureError( error.message )
         }
