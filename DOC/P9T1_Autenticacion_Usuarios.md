@@ -294,4 +294,4 @@ ___
 
 | Anterior               | Readme                 | Siguiente              |
 | ---------------------- | ---------------------- | ---------------------- |
-| [Relaciones con Query Builder](./P8T1_Relaciones_Query_Builder.md) | [Readme](../README.md) |  |
+| [Relaciones con Query Builder](./P8T1_Relaciones_Query_Builder.md) | [Readme](../README.md) | [Autorización con Guards y Decoradores](./P10T1_Autorizacion_Guards_Decoradores.md) |
