@@ -17,11 +17,11 @@ GET http://localhost:8000/api/users/all/
 
 ###############################################################
 
-GET http://localhost:8000/api/users/7050d082-b91c-4fe7-aa75-4b61250cfec6/
+GET http://localhost:8000/api/users/7d4a39f3-b738-43ad-a1a0-714d5d0da035/
 
 ###############################################################
 
-PUT http://localhost:8000/api/users/edit/7050d082-b91c-4fe7-aa75-4b61250cfec6/
+PUT http://localhost:8000/api/users/edit/7d4a39f3-b738-43ad-a1a0-714d5d0da035/
 Content-Type: application/json
 
 {
@@ -30,6 +30,6 @@ Content-Type: application/json
 
 ###############################################################
 
-DELETE http://localhost:8000/api/users/delete/7050d082-b91c-4fe7-aa75-4b61250cfec6/
+DELETE http://localhost:8000/api/users/delete/7d4a39f3-b738-43ad-a1a0-714d5d0da035/
 
 ###############################################################

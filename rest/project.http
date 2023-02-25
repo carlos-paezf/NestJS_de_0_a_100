@@ -12,11 +12,11 @@ GET http://localhost:8000/api/projects/all/
 
 ###############################################################
 
-GET http://localhost:8000/api/projects/05bab1c5-adcd-462b-8b67-4ea9735300a0/
+GET http://localhost:8000/api/projects/248d8d96-a9d1-46f0-b781-0dbbd92ff222/
 
 ###############################################################
 
-PUT http://localhost:8000/api/projects/edit/05bab1c5-adcd-462b-8b67-4ea9735300a0/
+PUT http://localhost:8000/api/projects/edit/248d8d96-a9d1-46f0-b781-0dbbd92ff222/
 Content-Type: application/json
 
 {
