@@ -21,3 +21,19 @@ export interface ITokenResponse {
     accessToken: string
     user: UserEntity
 }
+
+
+export interface IAuthTokenResult {
+    role: string
+    sub: string
+    iat: string
+    exp: string
+    isExpired: boolean
+}
+
+
+export interface IUseToken {
+    role: string
+    sub: string
+    isExpired: boolean
+}

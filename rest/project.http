@@ -1,4 +1,10 @@
-POST http://localhost:8000/api/projects/register/
+@baseURL = http://localhost:8000/api/projects
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiI3ZDRhMzlmMy1iNzM4LTQzYWQtYTFhMC03MTRkNWQwZGEwMzUiLCJpYXQiOjE2NzczNzIwMDgsImV4cCI6MTY3NzM3NTYwOH0.xFpY1FFCgXNf44xKpXR87bVSsbdTpniMWjWVX4b-vQ0
+@projectID = 248d8d96-a9d1-46f0-b781-0dbbd92ff222
+
+###############################################################
+
+POST {{baseURL}}/register/
 Content-Type: application/json
 
 {
@@ -8,15 +14,15 @@ Content-Type: application/json
 
 ###############################################################
 
-GET http://localhost:8000/api/projects/all/
+GET {{baseURL}}/all/
 
 ###############################################################
 
-GET http://localhost:8000/api/projects/248d8d96-a9d1-46f0-b781-0dbbd92ff222/
+GET {{baseURL}}/{{projectID}}/
 
 ###############################################################
 
-PUT http://localhost:8000/api/projects/edit/248d8d96-a9d1-46f0-b781-0dbbd92ff222/
+PUT {{baseURL}}/edit/{{projectID}}/
 Content-Type: application/json
 
 {
@@ -25,6 +31,6 @@ Content-Type: application/json
 
 ###############################################################
 
-DELETE http://localhost:8000/api/projects/delete/d029af25-6483-46b5-b754-411a11418153/
+DELETE {{baseURL}}/delete/{{projectID}}/
 
 ###############################################################
