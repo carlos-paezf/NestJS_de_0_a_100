@@ -30,3 +30,4 @@
 - [Relaciones con Query Builder](./DOC/P8T1_Relaciones_Query_Builder.md)
 - [Autenticación de usuarios](./DOC/P9T1_Autenticacion_Usuarios.md)
 - [Autorización con Guards y Decoradores](./DOC/P10T1_Autorizacion_Guards_Decoradores.md)
+- [Manejo de roles y niveles de acceso](./DOC/P11T1_Manejo_roles_niveles_acceso.md)
