@@ -1,9 +1,14 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiI3ZDU2MmE5ZC02MGQ5LTQxZWYtYTllZC02OGZmMjA4NzgyM2IiLCJpYXQiOjE2Nzc4Njk3MTIsImV4cCI6MTY3Nzg3MzMxMn0.RPuoHxwewDel5Bd0p--BNSrkIydS4uhpRTYnAK5YN1g
+
+########################################################################################################################################################
+
 POST http://localhost:8000/api/users/user-to-project/
 Content-Type: application/json
+Authorization: {{token}}
 
 {
-    "user": "7d4a39f3-b738-43ad-a1a0-714d5d0da035",
-    "project": "248d8d96-a9d1-46f0-b781-0dbbd92ff222",
+    "user": "7d562a9d-60d9-41ef-a9ed-68ff2087823b",
+    "project": "e3685c60-079a-493e-b30d-48adf83515ae",
     "accessLevel": 50 
 }
 

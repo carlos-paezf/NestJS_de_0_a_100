@@ -1,6 +1,6 @@
 @baseURL = http://localhost:8000/api/users
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiI3ZDRhMzlmMy1iNzM4LTQzYWQtYTFhMC03MTRkNWQwZGEwMzUiLCJpYXQiOjE2NzczNzIwMDgsImV4cCI6MTY3NzM3NTYwOH0.xFpY1FFCgXNf44xKpXR87bVSsbdTpniMWjWVX4b-vQ0
-@userID = 7d4a39f3-b738-43ad-a1a0-714d5d0da035
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiI3ZDU2MmE5ZC02MGQ5LTQxZWYtYTllZC02OGZmMjA4NzgyM2IiLCJpYXQiOjE2Nzc4NzU4NDAsImV4cCI6MTY3Nzg3OTQ0MH0.LNroXGyX3ULFQnKcNjd8CCPJ9fCw0uEk3VEyb5E4vOA
+@userID = 7d562a9d-60d9-41ef-a9ed-68ff2087823b
 
 ###############################################################
 
@@ -39,7 +39,27 @@ Authorization: {{token}}
 
 ###############################################################
 
-DELETE {{baseURL}}/delete/{{userID}}/
+POST {{baseURL}}/register/
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "firstName": "Delete",
+    "lastName": "user",
+    "age": 0,
+    "email": "delete.user@email.com",
+    "username": "delete_user",
+    "password": "delete_password",
+    "role": "BASIC"
+}
+
+###############################################################
+
+@deleteUserID = 730edd77-ea15-4800-a1f5-a1f5e76bb190
+
+###############################################################
+
+DELETE {{baseURL}}/delete/{{deleteUserID}}/
 Authorization: {{token}}
 
 ###############################################################

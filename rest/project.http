@@ -1,6 +1,6 @@
 @baseURL = http://localhost:8000/api/projects
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiI3ZDRhMzlmMy1iNzM4LTQzYWQtYTFhMC03MTRkNWQwZGEwMzUiLCJpYXQiOjE2NzczNzIwMDgsImV4cCI6MTY3NzM3NTYwOH0.xFpY1FFCgXNf44xKpXR87bVSsbdTpniMWjWVX4b-vQ0
-@projectID = 248d8d96-a9d1-46f0-b781-0dbbd92ff222
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiI3ZDU2MmE5ZC02MGQ5LTQxZWYtYTllZC02OGZmMjA4NzgyM2IiLCJpYXQiOjE2Nzc4NzU4NDAsImV4cCI6MTY3Nzg3OTQ0MH0.LNroXGyX3ULFQnKcNjd8CCPJ9fCw0uEk3VEyb5E4vOA
+@projectID = e3685c60-079a-493e-b30d-48adf83515ae
 
 ###############################################################
 
@@ -19,11 +19,13 @@ GET {{baseURL}}/all/
 ###############################################################
 
 GET {{baseURL}}/{{projectID}}/
+Authorization: {{token}}
 
 ###############################################################
 
 PUT {{baseURL}}/edit/{{projectID}}/
 Content-Type: application/json
+Authorization: {{token}}
 
 {
     "description": "Actualización del projecto"
