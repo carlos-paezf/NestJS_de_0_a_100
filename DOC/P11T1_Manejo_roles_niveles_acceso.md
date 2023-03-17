@@ -223,3 +223,9 @@ import { Global, ... } from '@nestjs/common';
 @Module( { ... } )
 export class UsersModule { }
 ```
+
+___
+
+| Anterior               | Readme                 | Siguiente              |
+| ---------------------- | ---------------------- | ---------------------- |
+| [Manejo de Roles y niveles de acceso](./P11T1_Manejo_roles_niveles_acceso.md) | [Readme](../README.md) | [Terminando módulo de tareas](./P12T1_Terminando_modulo_tareas.md) |
