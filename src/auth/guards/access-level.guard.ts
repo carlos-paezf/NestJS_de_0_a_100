@@ -34,7 +34,7 @@ export class AccessLevelGuard implements CanActivate {
 
         const { roleUser, idUser } = req;
 
-        if ( roleUser === ROLES.ADMIN ) return true;
+        if ( roleUser === ROLES.ADMIN || roleUser === ROLES.CREATOR ) return true;
 
         if ( !accessLevel ) {
             if ( !roles ) {
