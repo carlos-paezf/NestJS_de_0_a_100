@@ -1,5 +1,5 @@
 @baseURL = http://localhost:8000/api/users
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiI3ZDU2MmE5ZC02MGQ5LTQxZWYtYTllZC02OGZmMjA4NzgyM2IiLCJpYXQiOjE2Nzc4NzU4NDAsImV4cCI6MTY3Nzg3OTQ0MH0.LNroXGyX3ULFQnKcNjd8CCPJ9fCw0uEk3VEyb5E4vOA
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQ1JFQVRPUiIsInN1YiI6IjdkNTYyYTlkLTYwZDktNDFlZi1hOWVkLTY4ZmYyMDg3ODIzYiIsImlhdCI6MTY3OTI2Mjc0MSwiZXhwIjoxNjc5MjY2MzQxfQ.sHjKvTj8LSZzOrtGBZaV5Cl3RbAVX6UiXmmSRGhekz8
 @userID = 7d562a9d-60d9-41ef-a9ed-68ff2087823b
 
 ###############################################################

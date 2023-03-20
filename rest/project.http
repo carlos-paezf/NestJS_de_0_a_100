@@ -1,15 +1,18 @@
 @baseURL = http://localhost:8000/api/projects
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiI3ZDU2MmE5ZC02MGQ5LTQxZWYtYTllZC02OGZmMjA4NzgyM2IiLCJpYXQiOjE2Nzc4NzU4NDAsImV4cCI6MTY3Nzg3OTQ0MH0.LNroXGyX3ULFQnKcNjd8CCPJ9fCw0uEk3VEyb5E4vOA
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQ1JFQVRPUiIsInN1YiI6IjdkNTYyYTlkLTYwZDktNDFlZi1hOWVkLTY4ZmYyMDg3ODIzYiIsImlhdCI6MTY3OTI2NzcxMCwiZXhwIjoxNjc5MjcxMzEwfQ.F1jtxEzhwRwSUyl87iEq7JSWR5cvMYRVuYm2BrhN2wM
 @projectID = e3685c60-079a-493e-b30d-48adf83515ae
+@userOwnerId = 7d562a9d-60d9-41ef-a9ed-68ff2087823b
 
 ###############################################################
 
-POST {{baseURL}}/register/
+POST {{baseURL}}/create/
 Content-Type: application/json
+Authorization: {{token}}
 
 {
-    "name": "Proyecto de prueba",
-    "description": "Proyecto de prueba"
+    "userOwnerId": "{{userOwnerId}}",
+    "name": "Proyecto de prueba 2",
+    "description": "Proyecto de prueba 2"
 }
 
 ###############################################################

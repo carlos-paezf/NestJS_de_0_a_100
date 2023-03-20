@@ -1,0 +1,16 @@
+@baseURL = http://localhost:8000/api/tasks
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQ1JFQVRPUiIsInN1YiI6IjdkNTYyYTlkLTYwZDktNDFlZi1hOWVkLTY4ZmYyMDg3ODIzYiIsImlhdCI6MTY3OTI2NzcxMCwiZXhwIjoxNjc5MjcxMzEwfQ.F1jtxEzhwRwSUyl87iEq7JSWR5cvMYRVuYm2BrhN2wM
+@projectID = e3685c60-079a-493e-b30d-48adf83515ae
+
+###############################################################
+
+POST {{baseURL}}/create/{{projectID}}
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "name": "Tarea de prueba",
+    "description": "Tarea de prueba",
+    "status": "NEW",
+    "responsableName": "Ferrer"
+}
