@@ -1,5 +1,5 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator'
-import { IProject } from '../../interface/project.interface'
+import { IsNotEmpty, IsOptional, IsString, IsUUID } from 'class-validator';
+import { IProject } from '../../interface/project.interface';
 
 
 /**
@@ -10,12 +10,16 @@ import { IProject } from '../../interface/project.interface'
  */
 export class ProjectDTO implements IProject {
     @IsNotEmpty()
-    @IsString()
-    name: string
+    @IsUUID()
+    userOwnerId: string;
 
     @IsNotEmpty()
     @IsString()
-    description: string
+    name: string;
+
+    @IsNotEmpty()
+    @IsString()
+    description: string;
 }
 
 
@@ -28,9 +32,9 @@ export class ProjectDTO implements IProject {
 export class ProjectUpdateDTO implements Partial<IProject> {
     @IsOptional()
     @IsString()
-    name?: string
+    name?: string;
 
     @IsOptional()
     @IsString()
-    description?: string
+    description?: string;
 }

@@ -6,6 +6,7 @@ import { AuthGuard } from '../../auth/guards/auth.guard';
 import { RolesGuard } from '../../auth/guards/roles.guard';
 import { AccessLevelGuard } from '../../auth/guards/access-level.guard';
 import { AccessLevel } from 'src/auth/decorators/access-level.decorator';
+import { Roles } from 'src/auth/decorators/roles.decorator';
 
 
 @Controller( 'projects' )
@@ -13,8 +14,9 @@ import { AccessLevel } from 'src/auth/decorators/access-level.decorator';
 export class ProjectsController {
     constructor ( private readonly _projectService: ProjectsService ) { }
 
-    @Post( 'register' )
-    public async registerProject ( @Body() body: ProjectDTO ): Promise<ProjectEntity> {
+    @Roles( 'CREATOR' )
+    @Post( 'create' )
+    public async createProject ( @Body() body: ProjectDTO ): Promise<ProjectEntity> {
         return await this._projectService.createProject( body );
     }
 

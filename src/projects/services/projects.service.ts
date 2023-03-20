@@ -1,30 +1,37 @@
-import { Injectable } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
-import { DeleteResult, Repository, UpdateResult } from 'typeorm'
-import { ErrorManager } from '../../utils/error.manager'
-import { ProjectDTO, ProjectUpdateDTO } from '../dtos/project.dto'
-import { ProjectEntity } from '../entities/project.entity'
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
+import { ErrorManager } from '../../utils/error.manager';
+import { ProjectDTO, ProjectUpdateDTO } from '../dtos/project.dto';
+import { ProjectEntity } from '../entities/project.entity';
+import { UsersProjectsEntity } from 'src/users/entities/usersProjects.entity';
+import { ACCESS_LEVEL } from 'src/constants';
+import { UsersService } from 'src/users/services/users.service';
 
 @Injectable()
 export class ProjectsService {
-    constructor ( @InjectRepository( ProjectEntity ) private readonly _projectRepository: Repository<ProjectEntity> ) { }
+    constructor (
+        @InjectRepository( ProjectEntity ) private readonly _projectRepository: Repository<ProjectEntity>,
+        @InjectRepository( UsersProjectsEntity ) private readonly _usersProjectsRepository: Repository<UsersProjectsEntity>,
+        private readonly _usersService: UsersService
+    ) { }
 
     /**
      * It returns a promise of an array of ProjectEntity objects
      * @returns An array of ProjectEntity objects
      */
-    public async findProjects (): Promise<{ count: number, projects: ProjectEntity[] }> {
+    public async findProjects (): Promise<{ count: number, projects: ProjectEntity[]; }> {
         try {
-            const { 0: projects, 1: count }: [ ProjectEntity[], number ] = await this._projectRepository.findAndCount()
+            const { 0: projects, 1: count }: [ ProjectEntity[], number ] = await this._projectRepository.findAndCount();
             if ( !count ) {
                 throw new ErrorManager( {
                     type: 'BAD_REQUEST',
                     message: 'No se encontraron resultados'
-                } )
+                } );
             }
-            return { count, projects }
+            return { count, projects };
         } catch ( error ) {
-            throw ErrorManager.createSignatureError( error.message )
+            throw ErrorManager.createSignatureError( error.message );
         }
     }
 
@@ -40,16 +47,16 @@ export class ProjectsService {
                 .where( { id } )
                 .leftJoinAndSelect( 'project.usersIncludes', 'usersIncludes' )
                 .leftJoinAndSelect( 'usersIncludes.user', 'user' )
-                .getOne()
+                .getOne();
             if ( !project ) {
                 throw new ErrorManager( {
                     type: 'BAD_REQUEST',
                     message: 'No se encontraron resultados'
-                } )
+                } );
             }
-            return project
+            return project;
         } catch ( error ) {
-            throw ErrorManager.createSignatureError( error.message )
+            throw ErrorManager.createSignatureError( error.message );
         }
     }
 
@@ -60,16 +67,28 @@ export class ProjectsService {
      */
     public async createProject ( body: ProjectDTO ): Promise<ProjectEntity> {
         try {
-            const project: ProjectEntity = await this._projectRepository.save( body )
-            if ( !project ) {
+            const { userOwnerId, ...projectData } = body;
+
+            const user = await this._usersService.findUserById( userOwnerId );
+
+            const project: ProjectEntity = await this._projectRepository.save( { ...projectData } );
+
+            if ( !project || !user ) {
                 throw new ErrorManager( {
                     type: 'BAD_REQUEST',
                     message: 'No se aplicaron los cambios'
-                } )
+                } );
             }
-            return project
+
+            await this._usersProjectsRepository.save( {
+                accessLevel: ACCESS_LEVEL.OWNER,
+                project: project,
+                user: user
+            } );
+
+            return project;
         } catch ( error ) {
-            throw ErrorManager.createSignatureError( error.message )
+            throw ErrorManager.createSignatureError( error.message );
         }
     }
 
@@ -81,16 +100,16 @@ export class ProjectsService {
      */
     public async updateProject ( id: string, body: ProjectUpdateDTO ): Promise<UpdateResult | null> {
         try {
-            const result: UpdateResult = await this._projectRepository.update( id, body )
+            const result: UpdateResult = await this._projectRepository.update( id, body );
             if ( !result.affected ) {
                 throw new ErrorManager( {
                     type: 'BAD_REQUEST',
                     message: 'No se aplicaron los cambios'
-                } )
+                } );
             }
-            return result
+            return result;
         } catch ( error ) {
-            throw ErrorManager.createSignatureError( error.message )
+            throw ErrorManager.createSignatureError( error.message );
         }
     }
 
@@ -101,16 +120,16 @@ export class ProjectsService {
      */
     public async deleteProject ( id: string ): Promise<DeleteResult | null> {
         try {
-            const result: DeleteResult = await this._projectRepository.delete( id )
+            const result: DeleteResult = await this._projectRepository.delete( id );
             if ( !result.affected ) {
                 throw new ErrorManager( {
                     type: 'BAD_REQUEST',
                     message: 'No se aplicaron los cambios'
-                } )
+                } );
             }
-            return result
+            return result;
         } catch ( error ) {
-            throw ErrorManager.createSignatureError( error.message )
+            throw ErrorManager.createSignatureError( error.message );
         }
     }
 }

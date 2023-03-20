@@ -1,7 +1,8 @@
-import { Column, Entity, OneToMany } from "typeorm"
-import { BaseEntity } from "../../config/base.entity"
-import { IProject } from "../../interface/project.interface"
-import { UsersProjectsEntity } from "../../users/entities/usersProjects.entity"
+import { Column, Entity, OneToMany } from "typeorm";
+import { BaseEntity } from "../../config/base.entity";
+import { IProject } from "../../interface/project.interface";
+import { UsersProjectsEntity } from "../../users/entities/usersProjects.entity";
+import { TaskEntity } from "../../tasks/entities/task.entity";
 
 
 /**
@@ -13,11 +14,14 @@ import { UsersProjectsEntity } from "../../users/entities/usersProjects.entity"
 @Entity( { name: 'projects' } )
 export class ProjectEntity extends BaseEntity implements IProject {
     @Column()
-    name: string
+    name: string;
 
     @Column()
-    description: string
+    description: string;
 
     @OneToMany( () => UsersProjectsEntity, ( userProject ) => userProject.project )
-    usersIncludes: UsersProjectsEntity[]
+    usersIncludes: UsersProjectsEntity[];
+
+    @OneToMany( () => TaskEntity, ( task ) => task.project )
+    tasks: TaskEntity[];
 }
