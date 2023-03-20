@@ -32,3 +32,4 @@
 - [Autorización con Guards y Decoradores](./DOC/P10T1_Autorizacion_Guards_Decoradores.md)
 - [Manejo de roles y niveles de acceso](./DOC/P11T1_Manejo_roles_niveles_acceso.md)
 - [Terminando módulo de tareas](./DOC/P12T1_Terminando_modulo_tareas.md)
+- [Documentación con Swagger y OpenAPI](./DOC/P13T1_Documentacion_Swagger_OpenAPI.md)
