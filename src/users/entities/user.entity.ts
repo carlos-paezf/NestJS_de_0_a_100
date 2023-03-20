@@ -1,9 +1,9 @@
-import { Exclude } from 'class-transformer'
-import { Column, Entity, Index, OneToMany } from "typeorm"
-import { BaseEntity } from '../../config/base.entity'
-import { ROLES } from "../../constants"
-import { IUser } from "../../interface/user.interface"
-import { UsersProjectsEntity } from './usersProjects.entity'
+import { Exclude } from 'class-transformer';
+import { Column, Entity, OneToMany } from "typeorm";
+import { BaseEntity } from '../../config/base.entity';
+import { ROLES } from "../../constants";
+import { IUser } from "../../interface/user.interface";
+import { UsersProjectsEntity } from './usersProjects.entity';
 
 
 /**
@@ -16,30 +16,30 @@ import { UsersProjectsEntity } from './usersProjects.entity'
 @Entity( { name: 'users' } )
 export class UserEntity extends BaseEntity implements IUser {
     @Column()
-    firstName: string
+    firstName: string;
 
     @Column()
-    lastName: string
+    lastName: string;
 
     @Column()
-    age: number
+    age: number;
 
     @Column( { unique: true } )
-    email: string
+    email: string;
 
     @Column( { unique: true } )
-    username: string
+    username: string;
 
     @Exclude()
     @Column()
-    password: string
+    password: string;
 
     @Column( {
         type: 'enum',
         enum: ROLES
     } )
-    role: ROLES
+    role: ROLES;
 
     @OneToMany( () => UsersProjectsEntity, ( userProject ) => userProject.user )
-    projectsIncludes: UsersProjectsEntity[]
+    projectsIncludes: UsersProjectsEntity[];
 }
