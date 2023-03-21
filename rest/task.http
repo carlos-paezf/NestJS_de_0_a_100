@@ -1,6 +1,7 @@
 @baseURL = http://localhost:8000/api/tasks
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQ1JFQVRPUiIsInN1YiI6IjdkNTYyYTlkLTYwZDktNDFlZi1hOWVkLTY4ZmYyMDg3ODIzYiIsImlhdCI6MTY3OTI2NzcxMCwiZXhwIjoxNjc5MjcxMzEwfQ.F1jtxEzhwRwSUyl87iEq7JSWR5cvMYRVuYm2BrhN2wM
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQ1JFQVRPUiIsInN1YiI6IjdkNTYyYTlkLTYwZDktNDFlZi1hOWVkLTY4ZmYyMDg3ODIzYiIsImlhdCI6MTY3OTM1MjA1OCwiZXhwIjoxNjc5MzU1NjU4fQ.Lxhj68AjPXgHrwNxqh381viwHcxxcZLT3WMeIqiCM2U
 @projectID = e3685c60-079a-493e-b30d-48adf83515ae
+@taskID = e47d6f5a-daba-4949-9d8c-1b119c2df019
 
 ###############################################################
 
@@ -14,3 +15,31 @@ Authorization: {{token}}
     "status": "NEW",
     "responsableName": "Ferrer"
 }
+
+###############################################################
+
+GET {{baseURL}}/all/{{projectID}}
+Authorization: {{token}}
+
+###############################################################
+
+GET {{baseURL}}/{{projectID}}/{{taskID}}
+Authorization: {{token}}
+
+###############################################################
+
+PATCH {{baseURL}}/edit/{{projectID}}/{{taskID}}
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "description": "Actualización de la tarea",
+    "status": "IN PROGRESS"
+}
+
+###############################################################
+
+DELETE {{baseURL}}/delete/{{projectID}}/{{taskID}}
+Authorization: {{token}}
+
+###############################################################
