@@ -1,7 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Request } from 'express';
-import { ROLES } from 'src/constants';
+import { ACCESS_LEVEL, ROLES } from 'src/constants';
 import { ACCESS_LEVEL_KEY, ADMIN_KEY, PUBLIC_KEY, ROLES_KEY } from 'src/constants/key-decorators';
 import { UsersService } from 'src/users/services/users.service';
 
@@ -28,7 +28,7 @@ export class AccessLevelGuard implements CanActivate {
 
         const admin = this._reflector.get<string>( ADMIN_KEY, context.getHandler() );
 
-        const accessLevel = this._reflector.get<number>( ACCESS_LEVEL_KEY, context.getHandler() );
+        const accessLevel = this._reflector.get<string>( ACCESS_LEVEL_KEY, context.getHandler() );
 
         const req = context.switchToHttp().getRequest<Request>();
 
@@ -53,7 +53,7 @@ export class AccessLevelGuard implements CanActivate {
         if ( !userExistInProject ) throw new UnauthorizedException( 'You are not part of the project' );
 
 
-        if ( accessLevel !== userExistInProject.accessLevel ) throw new UnauthorizedException( 'You do not have the necessary access level' );
+        if ( ACCESS_LEVEL[ accessLevel ] > userExistInProject.accessLevel ) throw new UnauthorizedException( 'You do not have the necessary access level' );
 
         return true;
     }
