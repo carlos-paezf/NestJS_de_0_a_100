@@ -1,10 +1,11 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { AdminAccess } from 'src/auth/decorators/admin-access.decorator';
-import { PublicAccess } from 'src/auth/decorators/public-access.decorator';
-import { Roles } from 'src/auth/decorators/roles.decorator';
-import { AuthGuard } from 'src/auth/guards/auth.guard';
+import { AdminAccess } from '../../auth/decorators/admin-access.decorator';
+import { PublicAccess } from '../../auth/decorators/public-access.decorator';
+import { Roles } from '../../auth/decorators/roles.decorator';
+import { AuthGuard } from '../../auth/guards/auth.guard';
 import { RolesGuard } from '../../auth/guards/roles.guard';
+import { HttpCustomService } from '../../providers/http/http-custom.service';
 import { UserDTO, UserToProjectDTO, UserUpdateDTO } from '../dtos/user.dto';
 import { UserEntity } from '../entities/user.entity';
 import { UsersService } from '../services/users.service';
@@ -19,7 +20,16 @@ import { UsersService } from '../services/users.service';
 @Controller( 'users' )
 @UseGuards( AuthGuard, RolesGuard )
 export class UsersController {
-    constructor ( private readonly _usersService: UsersService ) { }
+    constructor (
+        private readonly _usersService: UsersService,
+        private readonly _httpCustomService: HttpCustomService
+    ) { }
+
+    @PublicAccess()
+    @Get( 'rick-and-morty' )
+    public async apiFindAllCharacters () {
+        return await this._httpCustomService.apiFindAll();
+    }
 
     @PublicAccess()
     @Post( 'register' )
@@ -27,13 +37,13 @@ export class UsersController {
         return await this._usersService.createUser( body );
     }
 
-    @Get( 'all' )
+    @Get( 'list' )
     public async findAllUsers (): Promise<{ count: number, users: UserEntity[]; }> {
         return await this._usersService.findUsers();
     }
 
     @PublicAccess()
-    @Get( ':userId' )
+    @Get( 'list/:userId' )
     public async findUserById ( @Param() { userId }: { userId: string; } ): Promise<UserEntity> {
         return await this._usersService.findUserById( userId );
     }
