@@ -1,7 +1,7 @@
 export enum STATUS_TASK {
     NEW = 'NEW',
-    IN_PROGRESS = 'IN_PROGRESS',
+    IN_PROGRESS = 'IN PROGRESS',
     COMPLETED = 'COMPLETED',
-    ON_HOLD = 'ON_HOLD',
+    ON_HOLD = 'ON HOLD',
     CANCELLED = 'CANCELLED'
 }
