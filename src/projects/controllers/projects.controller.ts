@@ -1,14 +1,16 @@
-import { Body, Controller, Post, Get, Param, Delete, Put, UseGuards } from '@nestjs/common';
-import { ProjectDTO, ProjectUpdateDTO } from '../dtos/project.dto';
-import { ProjectsService } from '../services/projects.service';
-import { ProjectEntity } from '../entities/project.entity';
-import { AuthGuard } from '../../auth/guards/auth.guard';
-import { RolesGuard } from '../../auth/guards/roles.guard';
-import { AccessLevelGuard } from '../../auth/guards/access-level.guard';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { AccessLevel } from 'src/auth/decorators/access-level.decorator';
 import { Roles } from 'src/auth/decorators/roles.decorator';
+import { AccessLevelGuard } from '../../auth/guards/access-level.guard';
+import { AuthGuard } from '../../auth/guards/auth.guard';
+import { RolesGuard } from '../../auth/guards/roles.guard';
+import { ProjectDTO, ProjectUpdateDTO } from '../dtos/project.dto';
+import { ProjectEntity } from '../entities/project.entity';
+import { ProjectsService } from '../services/projects.service';
 
 
+@ApiTags( 'Projects' )
 @Controller( 'projects' )
 @UseGuards( AuthGuard, RolesGuard, AccessLevelGuard )
 export class ProjectsController {
@@ -30,7 +32,7 @@ export class ProjectsController {
         return await this._projectService.findProjectById( projectId );
     }
 
-    @AccessLevel( 50 )
+    @AccessLevel( 'OWNER' )
     @Put( 'edit/:projectId' )
     public async updateProject ( @Param( 'projectId' ) projectId: string, @Body() body: ProjectUpdateDTO ) {
         return await this._projectService.updateProject( projectId, body );

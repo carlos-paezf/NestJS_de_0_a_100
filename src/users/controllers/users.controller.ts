@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { AdminAccess } from 'src/auth/decorators/admin-access.decorator';
 import { PublicAccess } from 'src/auth/decorators/public-access.decorator';
 import { Roles } from 'src/auth/decorators/roles.decorator';
@@ -14,6 +15,7 @@ import { UsersService } from '../services/users.service';
  * to perform CRUD operations on the User model
  * @class 
  */
+@ApiTags( 'Users' )
 @Controller( 'users' )
 @UseGuards( AuthGuard, RolesGuard )
 export class UsersController {

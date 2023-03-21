@@ -1,5 +1,6 @@
 import { IsNotEmpty, IsOptional, IsString, IsUUID } from 'class-validator';
 import { IProject } from '../../interface/project.interface';
+import { ApiProperty } from '@nestjs/swagger';
 
 
 /**
@@ -9,14 +10,17 @@ import { IProject } from '../../interface/project.interface';
  * @implements {IProject}
  */
 export class ProjectDTO implements IProject {
+    @ApiProperty()
     @IsNotEmpty()
     @IsUUID()
     userOwnerId: string;
 
+    @ApiProperty()
     @IsNotEmpty()
     @IsString()
     name: string;
 
+    @ApiProperty()
     @IsNotEmpty()
     @IsString()
     description: string;
@@ -30,10 +34,12 @@ export class ProjectDTO implements IProject {
  * @implements {IProject}
  */
 export class ProjectUpdateDTO implements Partial<IProject> {
+    @ApiProperty()
     @IsOptional()
     @IsString()
     name?: string;
 
+    @ApiProperty()
     @IsOptional()
     @IsString()
     description?: string;
