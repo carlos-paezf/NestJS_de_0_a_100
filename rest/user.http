@@ -20,12 +20,12 @@ Authorization: {{token}}
 
 ###############################################################
 
-GET {{baseURL}}/all/
+GET {{baseURL}}/list/
 Authorization: {{token}}
 
 ###############################################################
 
-GET {{baseURL}}/{{userID}}/
+GET {{baseURL}}/list/{{userID}}/
 
 ###############################################################
 
@@ -61,5 +61,9 @@ Authorization: {{token}}
 
 DELETE {{baseURL}}/delete/{{deleteUserID}}/
 Authorization: {{token}}
+
+###############################################################
+
+GET {{baseURL}}/rick-and-morty/
 
 ###############################################################
